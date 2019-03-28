@@ -1,5 +1,6 @@
 package hw9;
 
+import org.apache.log4j.Logger;
 import java.beans.XMLEncoder;
 import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
@@ -10,12 +11,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Logger;
-import java.util.regex.Matcher;
 
 public class MultilayerStructure {
 
-    private final static Logger log = Logger.getLogger(ValidateUtil.class.getName());
+    private final static Logger LOGGER = Logger.getLogger(ValidateUtil.class.getName());
 
     public void initializeStructure() {
         Integer integer = 6;
@@ -31,13 +30,16 @@ public class MultilayerStructure {
         mainList.add(map);
     }
 
-     public void converObjectToXML(List list){
-         try {
-             XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream("structure.xml")));
-             encoder.writeObject(list);
-             encoder.close();
-         } catch (FileNotFoundException e) {
-             log.info(e.getMessage());
-         }
-     }
+    public void converObjectToXML(List list) {
+        XMLEncoder encoder = null;
+        try {
+            encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream("structure.xml")));
+            encoder.writeObject(list);
+            encoder.close();
+        } catch (FileNotFoundException e) {
+            LOGGER.error(e.getMessage());
+        } finally {
+            encoder.close();
+        }
+    }
 }

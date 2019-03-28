@@ -1,12 +1,9 @@
 package hw9;
 
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ValidateUtil {
-
-    private final static Logger log = Logger.getLogger(ValidateUtil.class.getName());
 
     private final static String PHONE_NUMBER_REGEX = ("^((\\+?[0-9]{12}))$");
     private final static String EMAIL_REGEX = ("^[a-zA-Z0-9]+\\.[a-zA-Z0-9]+@{1}[a-zA-Z0-9]+\\.[a-zA-Z]+$");
